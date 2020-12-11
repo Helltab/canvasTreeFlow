@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <script src="lib/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<button onclick="reload()">重载</button>
+<button onclick="loadCanvas()">导入</button>
+<button onclick="save()">保存</button>
+<div id='canvasC'>
+</div>
+<script src="dist/canvasFlow.js"></script>
+<script>
+    var id = 'test123'
+    let flow = new CanvasTreeFlow({
+        elem: 'canvasC',
+        title_font: '16px 宋体',
+        block_font: '14px 楷体',
+        onEdit: function (id, type, draw) {
+            if (id) {
+                // 修改
+                console.log("正在编辑" + id)
+            } else {
+                // 添加
+                console.log("正在添加" + id)
+            }
+            draw("我是大帅哥我是大帅哥我是大帅哥我是大帅哥我是大帅哥我是大帅哥我是大帅哥")
+        },
+        onSelect: function (id, type) {
+            console.log("选择了", id, type)
+        },
+        onDel: function (id, type, draw) {
+            console.log("删除了" + id)
+            draw(true)
+        },
+        onAddNode: function (id, ifRoot, preId, draw) {
+            console.log("添加了节点" + id, ifRoot)
+            draw()
+        },
+        onAddBlock: function (id, draw) {
+            console.log("添加了内容块" + id)
+            draw()
+        },
+        bezier: false
+    })
+
+    function reload() {
+        let arr = flow.getData()
+        console.log(arr)
+        flow.reload(arr)
+    }
+
+    var loadCanvas = flow.loadCanvas
+    var save = flow.saveCanvas
+</script>
+</body>
+</html>
