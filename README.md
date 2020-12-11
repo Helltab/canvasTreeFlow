@@ -11,6 +11,49 @@ canvas 树型插件
 
 ## startup
 
+> 编写 ts 配置文件 `tsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    // 编译选项
+    "target": "es2016",
+    // 配置编译目标代码的版本标准
+    "module": "commonjs",
+    // 配置编译目标使用的模块化标准
+    "lib": [
+      "es2016",
+      "dom"
+    ],
+    "outDir": "./dist"
+  },
+  "include": [
+    "./src"
+  ]
+}
+```
+
+#### 自动编译 ts
+
+> 使用 vsCode
+
+```sh
+# ctrl + shift + B 
+ts:watch # 自动编译
+ts:build # 一次编译
+```
+
+> 使用 idea
+
+```sh
+# settings -> Languages&Frameworks->TypeScript
+# 勾选 Recompile on changes
+```
+
+#### 简单使用
+
+> index.html
+
 ```html
 <div id='canvasC'></div>
 <script src="dist/canvasFlow.js"></script>
